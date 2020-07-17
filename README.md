@@ -1,2 +1,2 @@
 # ConcurrencyPlusPlus
-Concurrency in C++
+This repository has my fun Concurrency projects in C++
