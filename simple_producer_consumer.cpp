@@ -9,39 +9,37 @@ using namespace std;
 
 int main() {
   queue<int> goods;
-  int c = 0;
   mutex m;
   condition_variable cond_var;
 
   thread producer([&](){
     unique_lock<mutex> lock(m);
     while(true) {
-      //wait for signal from consumer
+      // Wait on the lock for signal from consumer 
+      // when goods is full
       cond_var.wait(lock, [&](){
-        return c!=BUFFER_SIZE-1;});
+        return goods.size()!=BUFFER_SIZE-1;});
       
       goods.push(1);
-      c++;
-      cout << "produce " << c<<endl;
-      //signal consumer
+      cout << "produce " << goods.size()<<endl;
+
+      //signal consumer that goods is not empty
       m.unlock();
       cond_var.notify_all();
-      m.unlock();
     }
   });
 
   thread consumer([&](){
     unique_lock<mutex> lock(m);
     while(true) {
-      if (c==0) {
-        //wait for signal from producer
-      }
+      // Wait on the lock for signal from producer 
+      // when goods is empty
       cond_var.wait(lock, [&](){
-          return c!=0;});
+          return !goods.empty();});
       goods.pop();
-      c--;
-      cout << "consume " << c<<endl;
-      //signal producer
+      cout << "consume " << goods.size()<<endl;
+
+      //signal producer that goods is not full
       m.unlock();
       cond_var.notify_all();
     }
