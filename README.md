@@ -6,4 +6,4 @@ Simple Concurrency projects in C++
 4. [Single producer-Single consumer AKA blocking queue](https://github.com/myth01/ConcurrencyPlusPlus/blob/master/simple_producer_consumer.cpp)
 
 
-Reference: https://www.classes.cs.uchicago.edu/archive/2013/spring/12300-1/labs/lab6/
+Reference: This amazing Concurrenct Intro lab- https://www.classes.cs.uchicago.edu/archive/2013/spring/12300-1/labs/lab6/
