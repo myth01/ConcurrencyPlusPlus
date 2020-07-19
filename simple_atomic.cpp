@@ -11,7 +11,7 @@ void square(int x, atomic<int> &accum) {
   cout << "Inside square thread " << x << endl;
   int val = 0;
   sleep(x*0.1);
-  val += x;
+  val += x*x;
   accum += val;
 }
 
