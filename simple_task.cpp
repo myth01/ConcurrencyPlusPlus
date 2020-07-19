@@ -15,7 +15,7 @@ int main() {
   int accum = 0;
   int N = 30;
   for (int  i =1; i<=N; i++) {
-    sum_tasks.push_back( async(&square, i));
+    sum_tasks.push_back( async(launch::async, &square, i));
   }
   for (int  i =0; i<N; i++) {
     cout << "Get the future value " << i << endl;
