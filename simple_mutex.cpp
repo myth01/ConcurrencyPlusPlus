@@ -12,7 +12,7 @@ void square(int x, int &accum) {
   cout << "Inside square thread " << x << endl;
   int val = 0;
   sleep(x*0.1);
-  val += x;
+  val += x*x;
   accum_mutex.lock();
   accum += val;
   accum_mutex.unlock();
